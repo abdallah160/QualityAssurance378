@@ -1,15 +1,9 @@
 import { expect, test } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
 import { InventoryPage } from '../pages/InventoryPage';
 
 test.describe('Product Sorting', () => {
   test.beforeEach(async ({ page }) => {
-    const auth = new LoginPage(page);
-    await auth.navigate();
-    await auth.signIn(
-      process.env.USER_NAME as string,
-      process.env.PASSWORD as string
-    );
+    await page.goto('/inventory.html');
   });
 
   test('price high-to-low ordering is correct', async ({ page }) => {

@@ -1,17 +1,11 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
 import { InventoryPage } from '../pages/InventoryPage';
 import { CartPage } from '../pages/CartPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
 
 test.describe('Checkout Flow', () => {
   test.beforeEach(async ({ page }) => {
-    const auth = new LoginPage(page);
-    await auth.navigate();
-    await auth.signIn(
-      process.env.USER_NAME as string,
-      process.env.PASSWORD as string
-    );
+    await page.goto('/inventory.html');
   });
 
   test('complete order with two items', async ({ page }) => {
